@@ -118,7 +118,7 @@ def show_plots_for_communities_cultural_dispersion(
     plt.show()
 
     # Violin plot for stdev ---------------------------------------
-    fig, ax = plt.subplots(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(10, 8))
     violin_parts = ax.violinplot(
         [pdi_stedv_list, idv_stedv_list, mas_stedv_list, uai_stedv_list, ltowvs_stedv_list, ivr_stedv_list],
         showmeans=True,
