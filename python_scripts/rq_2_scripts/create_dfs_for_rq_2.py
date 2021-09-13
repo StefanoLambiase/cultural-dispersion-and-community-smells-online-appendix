@@ -5,6 +5,8 @@ import numpy as np
 import statistics
 
 # Custom imports
+import pandas as pd
+
 from python_scripts.globals import globals as gb
 
 
@@ -85,4 +87,3 @@ def create_projects_with_hofstede_df(
 # ----------------------------------------
 
 create_projects_with_hofstede_df(gb.START_DF_PATH, gb.HOFSTEDE_DF_PATH, gb.PROJECT_WITH_HOFSTEDE_DF_PATH)
-
