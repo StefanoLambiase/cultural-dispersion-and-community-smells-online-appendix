@@ -1,0 +1,74 @@
+Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: working_data$black ~ log(working_data$totalCommitters) + log(working_data$totalcommits) +  
+    working_data$projectAge + working_data$turnover + working_data$blauGender +  
+    working_data$tenureMedian + working_data$tenureDiversity +  
+    log(working_data$teamSize) + working_data$stCongruence +  
+    working_data$truckFactor + working_data$female + working_data$expertise +  
+    working_data$centrality + working_data$pdi_stdev + working_data$idv_stdev +  
+    working_data$mas_stdev + working_data$uai_stdev + working_data$ltowvs_stdev +  
+    working_data$ivr_stdev + working_data$geo_distance + (1 |      working_data$window_idx)
+
+     AIC      BIC   logLik deviance df.resid 
+   761.7    834.8   -357.9    715.7      154 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.02176 -0.80982 -0.03027  0.77051  2.33648 
+
+Random effects:
+ Groups                  Name        Variance Std.Dev.
+ working_data$window_idx (Intercept) 0.06906  0.2628  
+ Residual                            3.27499  1.8097  
+Number of obs: 177, groups:  working_data$window_idx, 24
+
+Fixed effects:
+                                    Estimate Std. Error t value
+(Intercept)                        7.2661108  1.8993425   3.826
+log(working_data$totalCommitters) -0.0109194  0.1952459  -0.056
+log(working_data$totalcommits)    -0.0185086  0.1563071  -0.118
+working_data$projectAge           -0.0058037  0.0329512  -0.176
+working_data$turnover              0.7853825  0.7301785   1.076
+working_data$blauGender           -7.6685819  2.7088702  -2.831
+working_data$tenureMedian          0.0421547  0.0812791   0.519
+working_data$tenureDiversity      -0.0018022  0.0571516  -0.032
+log(working_data$teamSize)         0.1705227  0.1986931   0.858
+working_data$stCongruence          0.2497926  0.4187585   0.597
+working_data$truckFactor           0.0283436  0.1048890   0.270
+working_data$female                0.0172972  0.0251486   0.688
+working_data$expertise            -0.2492789  0.4646151  -0.537
+working_data$centrality           -0.2767571  0.3339033  -0.829
+working_data$pdi_stdev            -0.0049852  0.0664021  -0.075
+working_data$idv_stdev            -0.0211647  0.0555025  -0.381
+working_data$mas_stdev             0.0701127  0.0535278   1.310
+working_data$uai_stdev             0.0356942  0.0739217   0.483
+working_data$ltowvs_stdev         -0.0164320  0.0572675  -0.287
+working_data$ivr_stdev             0.0096588  0.0906850   0.107
+working_data$geo_distance         -0.0013203  0.0002131  -6.197
+fit warnings:
+Some predictor variables are on very different scales: consider rescaling
+Analysis of Deviance Table (Type II Wald chisquare tests)
+
+Response: working_data$black
+                                    Chisq Df Pr(>Chisq)    
+log(working_data$totalCommitters)  0.0031  1   0.955400    
+log(working_data$totalcommits)     0.0140  1   0.905742    
+working_data$projectAge            0.0310  1   0.860192    
+working_data$turnover              1.1569  1   0.282105    
+working_data$blauGender            8.0141  1   0.004642 ** 
+working_data$tenureMedian          0.2690  1   0.604011    
+working_data$tenureDiversity       0.0010  1   0.974844    
+log(working_data$teamSize)         0.7365  1   0.390770    
+working_data$stCongruence          0.3558  1   0.550836    
+working_data$truckFactor           0.0730  1   0.786987    
+working_data$female                0.4731  1   0.491579    
+working_data$expertise             0.2879  1   0.591594    
+working_data$centrality            0.6870  1   0.407187    
+working_data$pdi_stdev             0.0056  1   0.940155    
+working_data$idv_stdev             0.1454  1   0.702959    
+working_data$mas_stdev             1.7157  1   0.190251    
+working_data$uai_stdev             0.2332  1   0.629192    
+working_data$ltowvs_stdev          0.0823  1   0.774163    
+working_data$ivr_stdev             0.0113  1   0.915178    
+working_data$geo_distance         38.4030  1  5.754e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

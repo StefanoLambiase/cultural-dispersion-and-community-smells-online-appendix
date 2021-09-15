@@ -10,6 +10,11 @@ PROJECT_WITH_HOFSTEDE_DF_PATH = '../../data/community_analysis/projects_with_hof
 
 FIGURES_PATH = '../../figures/'
 
+DF_WITH_BLACK_CLOUD_PATH = '../../data/df_with_smells/black_cloud.csv'
+DF_WITH_LONE_WOLF_PATH = '../../data/df_with_smells/lone_wolf.csv'
+DF_WITH_RADIO_SILENCE_PATH = '../../data/df_with_smells/radio_silence.csv'
+DF_WITH_ORGANISATION_SILO_PATH = '../../data/df_with_smells/organisation_silo.csv'
+
 
 # Vars
 HOFSTEDE_INDEX_LIST = ["pdi", "idv", "mas", "uai", "ltowvs", "ivr"]
@@ -79,3 +84,11 @@ def get_num_of_country_with_high_known_values(df_par):
             count += 1
 
     return count
+
+
+def get_smelly_df(dataset_path):
+    df = pd.read_csv(
+        dataset_path,
+        sep=';',
+    )
+    return df

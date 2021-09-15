@@ -1,0 +1,135 @@
+---
+title: "Organisational Silo Model Construction"
+output: organisational_silo_model_construction_html
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+This notebook has been used to create a Linear Mixed Effect Model for the organisation Silence analysis.
+
+```{r}
+
+library(carData)
+library(car)
+library(Matrix)
+library(lme4)
+library(LMERConvenienceFunctions)
+
+```
+
+# Dataset load
+
+```{r}
+
+# Reading input data.
+data <- read.csv("./organisation.csv", sep = ";", header = TRUE, stringsAsFactors=FALSE)
+
+# Excluding some columns
+working_data <- na.omit(data)
+
+```
+
+# Linear Mixed Model using lmer function on all the variables
+
+```{r}
+
+#----------------------------
+#ALL THE VARIABLES
+
+# Applying a Linear Mixed Model using the lmer function
+organisation <- lmer(working_data$organisation~log(working_data$totalCommitters)+log(working_data$totalcommits)
+             +working_data$projectAge+working_data$turnover+working_data$blauGender
+             +working_data$tenureMedian+working_data$tenureDiversity+log(working_data$teamSize)
+             +working_data$stCongruence+working_data$truckFactor+working_data$female
+             +working_data$expertise+working_data$centrality+working_data$pdi_stdev
+             +working_data$idv_stdev+working_data$mas_stdev
+             +working_data$uai_stdev+working_data$ltowvs_stdev+working_data$ivr_stdev
+             +working_data$geo_distance+(1 | working_data$window_idx ), REML=FALSE)
+
+# Remove outlier
+romr.fnc(organisation, working_data, trim = 2.5)
+
+# Applying vif <5
+print(vif(organisation))
+
+# Applying a Linear Mixed Model using the lmer function, after vif - NO REMOVAL
+
+# print result
+print(summary(organisation))
+
+# Applying anova
+Anova(organisation)
+
+# Save in a txt file
+sink("output_organisation_all_variables.txt")
+print(summary(organisation))
+Anova(organisation)
+sink()
+
+```
+
+# Linear Mixed Model using lmer function on all the confounding variables
+
+```{r}
+
+#----------------------------
+#ALL THE CONFOUNDING VARIABLES
+
+# Applying a Linear Mixed Model using the lmer function
+organisation <- lmer(working_data$organisation~log(working_data$totalCommitters)+log(working_data$totalcommits)
+             +working_data$projectAge+working_data$turnover
+             +working_data$tenureMedian+working_data$tenureDiversity+log(working_data$teamSize)
+             +working_data$stCongruence+working_data$centrality+working_data$truckFactor
+             +working_data$expertise+working_data$female+working_data$blauGender
+             +(1 | working_data$window_idx ), REML=FALSE)
+
+# Remove outlier
+romr.fnc(organisation, working_data, trim = 2.5)
+
+# Applying vif <5
+print(vif(organisation))
+
+# Applying a Linear Mixed Model using the lmer function, after vif, NO REMOVALS
+organisation <- lmer(working_data$organisation~log(working_data$totalCommitters)+log(working_data$totalcommits)
+             +working_data$projectAge+working_data$turnover
+             +working_data$tenureMedian+working_data$centrality+working_data$tenureDiversity
+             +working_data$stCongruence+working_data$truckFactor
+             +working_data$expertise+working_data$female+working_data$blauGender
+             +(1 | working_data$window_idx ), REML=FALSE)
+
+# print result
+print(summary(organisation))
+
+# Applying anova
+Anova(organisation)
+
+# Save in a txt file
+sink("output_organisation_confounding_variables.txt")
+print(summary(organisation))
+Anova(organisation)
+sink()
+
+```
+
+# Linear Mixed Model using lmer function on only random effect
+
+```{r}
+
+#----------------------------
+#ONLY RANDOM EFFECT
+
+# Applying a Linear Mixed Model using the lmer function
+organisation <- lmer(working_data$organisation~(1 | working_data$window_idx ), REML=FALSE)
+
+# Remove outlier
+romr.fnc(organisation, working_data, trim = 2.5)
+
+# print result
+print(summary(organisation))
+
+# Save in a txt file
+sink("output_organisation_random.txt")
+print(summary(organisation))
+sink()
+
+```
