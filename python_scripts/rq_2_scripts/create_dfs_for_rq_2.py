@@ -61,7 +61,7 @@ def create_projects_with_hofstede_df(
             # Calculates metrics on index values
             greater_than_two = len(idx_values) >= 2
             idx_row_values_average = statistics.mean(idx_values) if greater_than_two else np.nan
-            idx_row_values_stdev = statistics.stdev(idx_values) if greater_than_two else np.nan
+            idx_row_values_stdev = statistics.pstdev(idx_values) if greater_than_two else np.nan
 
             # Converts indexes list into a string
             idx_values = [int(x) for x in idx_values]
