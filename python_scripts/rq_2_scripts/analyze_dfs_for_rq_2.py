@@ -87,22 +87,25 @@ def show_plots_for_communities_cultural_dispersion(
         showmeans=True,
         showmedians=True,
         showextrema=True,
+
     )
 
-    # Make mean of the violin marks red:
+    # Customize mean and median
     violin_parts['cmedians'].set_edgecolor('#ff2222')
+    violin_parts['cmedians'].set_linestyle('dashed')
     violin_parts['cmeans'].set_edgecolor('#008000')
+    violin_parts['cmeans'].set_linestyle('solid')
 
     # Add x, y gridlines
     ax.grid(
         b=True, color='grey',
         linestyle='-.', linewidth=0.75,
-        alpha=0.5
+        alpha=0.5,
     )
 
     legend_elements = [
-        Line2D([0], [0], color='#ff2222', lw=4, label='Medians'),
-        Line2D([0], [0], color='#008000', lw=4, label='Average')
+        Line2D([0], [0], color='#ff2222', lw=1, label='Medians', linestyle='dashed'),
+        Line2D([0], [0], color='#008000', lw=1, label='Average', linestyle='solid')
     ]
     ax.legend(handles=legend_elements, loc='upper right')
 
@@ -126,9 +129,11 @@ def show_plots_for_communities_cultural_dispersion(
         showextrema=True,
     )
 
-    # Make mean of the violin marks red:
+    # Customize mean and median
     violin_parts['cmedians'].set_edgecolor('#ff2222')
+    violin_parts['cmedians'].set_linestyle('dashed')
     violin_parts['cmeans'].set_edgecolor('#008000')
+    violin_parts['cmeans'].set_linestyle('solid')
 
     # Add x, y gridlines
     ax.grid(
@@ -138,8 +143,8 @@ def show_plots_for_communities_cultural_dispersion(
     )
 
     legend_elements = [
-        Line2D([0], [0], color='#ff2222', lw=4, label='Medians'),
-        Line2D([0], [0], color='#008000', lw=4, label='Average')
+        Line2D([0], [0], color='#ff2222', lw=1, label='Medians', linestyle='dashed'),
+        Line2D([0], [0], color='#008000', lw=1, label='Average', linestyle='solid')
     ]
     ax.legend(handles=legend_elements, loc='upper right')
 

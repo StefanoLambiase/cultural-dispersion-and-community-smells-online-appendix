@@ -153,7 +153,61 @@ def create_devs_with_hofstede_df(
     return all_devs_df
 
 
+def create_df_with_all_devs_in_start_df(start_df_path, to_save_path):
+    start_df = pd.read_csv(
+        start_df_path,
+        sep=';',
+    )
+
+    all_devs = list()
+    all_genders = list()
+    all_countries = list()
+
+    for index, row in start_df.iterrows():
+        # Prints the progress
+        print('Create all developers df PROGRESS: ' + str(index) + '/' + str(len(start_df)), end='\r')
+
+        # Gets all values
+        devs = row['team'].split(',')
+        genders = row['genders'].split(',')
+        countries = row['countries'].split(',')
+
+        # Iterates to eliminate already inserted values
+        idx_dev = 0
+        while idx_dev < len(devs):
+            if devs[idx_dev] in all_devs:
+                del (devs[idx_dev])
+                del (genders[idx_dev])
+                del (countries[idx_dev])
+            else:
+                idx_dev += 1
+
+        # Ads values to globals vars
+        all_devs.extend(devs)
+        all_genders.extend(genders)
+        all_countries.extend(countries)
+
+    print('COMPLETED')
+    print('Number of devs: ' + str(len(all_devs)))
+
+    # Creates the df
+    df = pd.DataFrame(
+        list(zip(all_devs, all_genders, all_countries)),
+        columns=['devs', 'genders', 'countries']
+    )
+
+    # Saves the df as csv
+    df.to_csv(to_save_path)
+
+    return df
+
+
 # --------------------
 
-create_countries_with_stats_df(gb.ALL_DEVS_DF_PATH, gb.COUNTRIES_WITH_STATS_DF_PATH)
-create_devs_with_hofstede_df(gb.ALL_DEVS_DF_PATH, gb.HOFSTEDE_DF_PATH, gb.DEVS_WITH_HOFSTEDE_DF_PATH)
+#create_countries_with_stats_df(gb.ALL_DEVS_DF_PATH, gb.COUNTRIES_WITH_STATS_DF_PATH)
+#create_devs_with_hofstede_df(gb.ALL_DEVS_DF_PATH, gb.HOFSTEDE_DF_PATH, gb.DEVS_WITH_HOFSTEDE_DF_PATH)
+
+create_df_with_all_devs_in_start_df(
+    start_df_path=gb.START_DF_PATH,
+    to_save_path=gb.ALL_DEVS_IN_START_DF_DF_PATH
+)

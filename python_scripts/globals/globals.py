@@ -3,6 +3,7 @@ import pandas as pd
 # Path vars
 START_DF_PATH = '../../data/start_df.csv'
 ALL_DEVS_DF_PATH = '../../data/github_analysis/all_devs.csv'
+ALL_DEVS_IN_START_DF_DF_PATH = '../../data/github_analysis/all_devs_in_start_df.csv'
 HOFSTEDE_DF_PATH = '../../data/hofstede_metrics/hofstede.csv'
 DEVS_WITH_HOFSTEDE_DF_PATH = '../../data/github_analysis/devs_with_hofstede.csv'
 COUNTRIES_WITH_STATS_DF_PATH = '../../data/github_analysis/countries_with_stats.csv'
