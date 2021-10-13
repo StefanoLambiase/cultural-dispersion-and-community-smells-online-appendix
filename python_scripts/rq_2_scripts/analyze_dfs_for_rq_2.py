@@ -161,4 +161,6 @@ def show_plots_for_communities_cultural_dispersion(
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-show_plots_for_communities_cultural_dispersion(gb.PROJECT_WITH_HOFSTEDE_DF_PATH, 0.5)
+# show_plots_for_communities_cultural_dispersion(gb.PROJECT_WITH_HOFSTEDE_DF_PATH, 0.5)
+
+project_with_hofstede_df = pd.read_csv(gb.PROJECT_WITH_HOFSTEDE_DF_PATH, sep=';')
